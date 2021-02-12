@@ -7,6 +7,10 @@
     right: 0;
     background-color: beige;
 }
+#title { 
+    margin-top: 20px;
+    text-align: center;
+}
 #buttons {
     position: relative;
     display: flex;
@@ -18,7 +22,15 @@
     background-color: green;
 }
 .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
     width: 150px;
     height: 150px;
     margin: 0 5px 0 5px;
+    background-color: grey;
+}
+.controls:hover{
+    background-color: rgb(95, 94, 94);
 }

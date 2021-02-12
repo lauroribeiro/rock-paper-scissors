@@ -7,17 +7,29 @@ function computerPlay() {
     switch(option){
         case 1:
             return "rock";
-            break;
         case 2:
             return "paper";
-            break;
         case 3:
             return "scissors";
-            break;
     }
 }
-function playRound(playerSelection, computerSelection){
 
+
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+// rock.style.color = "blue";
+// rock.addEventListener("onclick", getUserInput);
+function getUserInput(e){
+    const playerSelection = e.target.id;
+    playRound(playerSelection, computerPlay());
+}
+
+const buttons = document.querySelectorAll(".controls");
+buttons.forEach( button => button.addEventListener("click", getUserInput));
+
+
+function playRound(playerSelection, computerSelection){
     if(playerSelection == "rock" && computerSelection == "paper"){
         console.log("You Lose! Paper beats Rock.");
         return "You Lose! Paper beats Rock.";
@@ -41,9 +53,7 @@ function playRound(playerSelection, computerSelection){
         return "It is a tie!";
     }
 }
-function getUserInput(){
-    
-}
+
 function game(){
     const roundCount = 5;
     let playerScore = 0;
