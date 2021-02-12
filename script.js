@@ -1,3 +1,31 @@
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const buttons = document.querySelectorAll(".controls");
+const scoreboardText = document.querySelector("#score-text");
+const resultText = document.querySelector("#winner");
+
+const roundCount = 5;
+let playerScore = 0;
+let computerScore = 0;
+
+let playerSelection = "";
+
+buttons.forEach( button => button.addEventListener("click", getUserInput));
+
+function checkWin(){
+    if(playerScore === 5 || computerScore === 5){
+        if(playerScore === 5){
+            resultText.textContent = "You WIN!";
+        }else{
+            resultText.textContent = "You LOSE!";
+        }    
+        playerScore = 0;
+        computerScore = 0;
+        // updateScoreboard();
+    }
+}
+
 function randomNumber(){
     let number = Math.random() * 3;
     return Math.ceil(number);
@@ -14,20 +42,12 @@ function computerPlay() {
     }
 }
 
-
-const rock = document.querySelector("#rock");
-const paper = document.querySelector("#paper");
-const scissors = document.querySelector("#scissors");
-// rock.style.color = "blue";
-// rock.addEventListener("onclick", getUserInput);
 function getUserInput(e){
-    const playerSelection = e.target.id;
-    playRound(playerSelection, computerPlay());
+    playerSelection = e.target.id;
+    let result = playRound(playerSelection, computerPlay());
+    updateScoreboard(result);
+    checkWin();
 }
-
-const buttons = document.querySelectorAll(".controls");
-buttons.forEach( button => button.addEventListener("click", getUserInput));
-
 
 function playRound(playerSelection, computerSelection){
     if(playerSelection == "rock" && computerSelection == "paper"){
@@ -54,22 +74,15 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-function game(){
-    const roundCount = 5;
-    let playerScore = 0;
-    let computerScore = 0;
-    for(let i = 0; i < roundCount; i++){
-        let playerSelection = prompt("Rock, paper or scissors?");
-        let result = playRound(playerSelection, computerPlay());
-        if(result.search("Win") == -1 && result.search("tie") == -1){
-            console.log("Computer wins!")
-            computerScore += 1;
-        }else if (result.search("Lose") == -1 && result.search("tie") == -1){
-            console.log("Player wins!")
-            playerScore += 1;
-        }else{
-            console.log("Tie!");
-        }
+function updateScoreboard(result = "Tie"){
+    if(result.search("Win") == -1 && result.search("tie") == -1){
+        console.log("Computer wins!")
+        computerScore += 1;
+    }else if (result.search("Lose") == -1 && result.search("tie") == -1){
+        console.log("Player wins!")
+        playerScore += 1;
+    }else{
+        console.log("Tie!");
     }
-    console.log(`Player: ${playerScore} Computer: ${computerScore}`);
+    scoreboardText.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
 }
