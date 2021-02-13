@@ -44,6 +44,7 @@ function computerPlay() {
 
 function getUserInput(e){
     playerSelection = e.target.id;
+    console.log(e)
     let result = playRound(playerSelection, computerPlay());
     updateScoreboard(result);
     checkWin();
