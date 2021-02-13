@@ -34,6 +34,7 @@ body {
     width: 150px;
     height: 150px;
     margin: 0 5px 0 5px;
+    padding: 90px;
     background-color: grey;
 }
 .controls:hover{
@@ -47,4 +48,9 @@ body {
 }
 #title{
     font-size: 50px;
+}
+.images { 
+    height: 130px;
+    width: 130px;
+    
 }
