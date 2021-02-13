@@ -3,7 +3,7 @@ const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 const buttons = document.querySelectorAll(".controls");
 const scoreboardText = document.querySelector("#score-text");
-const resultText = document.querySelector("#winner");
+const resultText = document.querySelector(".output");
 
 const roundCount = 5;
 let playerScore = 0;
@@ -51,25 +51,25 @@ function getUserInput(e){
 
 function playRound(playerSelection, computerSelection){
     if(playerSelection == "rock" && computerSelection == "paper"){
-        console.log("You Lose! Paper beats Rock.");
+        resultText.textContent = "You Lose! Paper beats Rock.";
         return "You Lose! Paper beats Rock.";
     }else if(playerSelection == "rock" && computerSelection == "scissors"){
-        console.log("You Lose! Rock beats Scissors.");
+        resultText.textContent = "You Lose! Rock beats Scissors.";
         return "You Win! Rock beats Scissors.";
     }else if(playerSelection == "paper" && computerSelection == "scissors"){
-        console.log("You Lose! Scissors beats Paper.");
+        resultText.textContent = "You Lose! Scissors beats Paper.";
         return "You Lose! Scissors beats Paper.";
     }else if(playerSelection == "paper" && computerSelection == "rock"){
-        console.log("You Win! Paper beats Rock.");
+        resultText.textContent = "You Win! Paper beats Rock.";
         return "You Win! Paper beats Rock.";
     }else if(playerSelection == "scissors" && computerSelection == "rock"){
-        console.log("You Lose! Rock beats Scissors.");
+        resultText.textContent = "You Lose! Rock beats Scissors.";
         return "You Lose! Rock beats Scissors.";
     }else if(playerSelection == "scissors" && computerSelection == "paper"){
-        console.log("You Win! Scissors beats Paper.");
+        resultText.textContent = "You Win! Scissors beats Paper.";
         return "You Win! Scissors beats Paper.";
     }else{
-        console.log("Tie!");
+        resultText.textContent = "Tie!";
         return "It is a tie!";
     }
 }
@@ -84,5 +84,5 @@ function updateScoreboard(result = "Tie"){
     }else{
         console.log("Tie!");
     }
-    scoreboardText.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+    scoreboardText.textContent = `Player: ${playerScore} - Computer: ${computerScore}`;
 }
